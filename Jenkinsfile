@@ -20,9 +20,11 @@ pipeline {
             }
         }
 
-        stage('sonar') {
+        stage('create AWS ec2 instance') {
             steps {
-                sh "echo running Sonar scans"
+                withAWS(credentials: 'jenkins_aws', region: 'us-east-1') {
+                    sh "aws s3 ls"
+                }
             }
         }
 
