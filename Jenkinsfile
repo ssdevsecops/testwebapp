@@ -22,13 +22,13 @@ pipeline {
 
         stage('sonar') {
             steps {
-                sh " running Sonar scans"
+                sh "echo running Sonar scans"
             }
         }
 
         stage('veracode scan') {
                     steps {
-                        sh " running Sonar scans"
+                        sh "echo running Sonar scans"
                     }
           }
     }
