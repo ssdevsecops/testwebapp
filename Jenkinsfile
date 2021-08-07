@@ -4,6 +4,7 @@ pipeline {
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "maven3.8"
+        terraform "terraform"
     }
 
     stages {
@@ -23,12 +24,13 @@ pipeline {
         stage('create AWS ec2 instance') {
             steps {
                 withAWS(credentials: 'jenkins_aws', region: 'us-east-1') {
-                    sh "aws ec2 run-instances --image-id ami-0c2b8ca1dad447f8a --count 1 --instance-type t2.micro --key-name june2021 --security-group-ids sg-0be7cfd24c5af82b6 --subnet-id subnet-6e081250"
+                     terraform init
+                    // sh "aws ec2 run-instances --image-id ami-0c2b8ca1dad447f8a --count 1 --instance-type t2.micro --key-name june2021 --security-group-ids sg-0be7cfd24c5af82b6 --subnet-id subnet-6e081250"
                 }
             }
         }
 
-        stage('veracode scan') {
+       stage('veracode scan') {
              when {
                              branch 'production'
                     }
