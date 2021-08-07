@@ -18,7 +18,18 @@ pipeline {
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
-
         }
+
+        stage('sonar') {
+            steps {
+                sh " running Sonar scans"
+            }
+        }
+
+        stage('veracode scan') {
+                    steps {
+                        sh " running Sonar scans"
+                    }
+          }
     }
 }
