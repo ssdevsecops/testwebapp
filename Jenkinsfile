@@ -27,6 +27,9 @@ pipeline {
         }
 
         stage('veracode scan') {
+             when {
+                             branch 'production'
+                    }
                     steps {
                         sh "echo running Sonar scans"
                     }
